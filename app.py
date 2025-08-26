@@ -2,17 +2,18 @@ from flask import Flask
 
 app = Flask(__name__)
 
-@app.route('/')
+@app.route("/")
 def home():
-    return "Hello, Cactros!"
+    return {"message": "Cactros Flask App is running!"}
 
-@app.route('/health')
+@app.route("/health")
 def health():
-    return "OK"
+    return {"status": "ok"}
 
-@app.route('/welcome')
+@app.route("/welcome")
 def welcome():
-    return "Welcome to Cactros Flask App!"
+    return {"message": "Welcome to Cactros Flask App!"}
 
-if __name__ == '__main__':
-    app.run(debug=True)
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=5000)
+
