@@ -1,21 +1,20 @@
-# Use Python 3.9 slim
-FROM python:3.9-slim
+# Use python base image
+FROM python:3.10-slim
 
-# Set working directory
+#set working directory
 WORKDIR /app
 
-# Copy requirements first
-COPY requirements.txt /app/
+# Copy requirements first (for caching layers)
+COPY requirements.txt .
 
 # Install dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy everything else
-COPY . /app/
+#Copy source code
+COPY . . 
 
-# Expose port
+#Expose port
 EXPOSE 5000
 
-# Run the app
-CMD ["python", "app.py"]
-
+#Run the app
+CMD ["python" , "app.py"]
